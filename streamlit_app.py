@@ -248,6 +248,8 @@ def click_submit(req, form, events, label_thresh, keras_md_thresh, keras_mp_thre
         form.write("requête acceptée")
         token, pred_page, pred_doc = extract_name_page(ph_tk, pts, roles)
         sec_duration = int(token[1])
+        if sec_duration < 60:
+            sec_duration = 60
         if sec_duration > 14400:
             form.write("Trop de pages à imprimer, vous ne pouvez pas imprimer plus de 14400 pages pour des soucis de "
                        "partage du matériel.")
