@@ -5,6 +5,7 @@ brotlipy==0.7.0
 cachetools==5.2.0
 calendar-view==2.1.0
 charset-normalizer==2.1.1
+dill
 flatbuffers==22.10.26
 fonttools==4.25.0
 fr_core_news_sm @ https://github.com/explosion/spacy-models/releases/download/fr_core_news_sm-3.4.0/fr_core_news_sm-3.4.0-py3-none-any.whl
