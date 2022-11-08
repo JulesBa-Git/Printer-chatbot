@@ -27,7 +27,7 @@ pandas==1.4.4
 Pillow==9.2.0
 plotly==5.9.0
 ply==3.11
-protobuf==3.20.1
+protobuf
 pyarrow==8.0.0
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
