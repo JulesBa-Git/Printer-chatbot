@@ -203,20 +203,29 @@ def create_red_events():
         day = day + timedelta(days=1)
 
 
-def hist(phrase_tk, tableau_doc, tableau_pages):
-    """
-      phrase_tk = tableau de longueur N de tous les tokens (coucou ça va ? -> ["coucou", "ça", "va"])
-      tableau_xxx = tableau de 32 flottants entre 0 et 1 (somme à 1) [0.1, 0.2, ....]
-    """
-    fig = px.histogram(x=phrase_tk,
-                       y=tableau_doc[:len(phrase_tk)],
-                       labels={'x': 'phrase', 'y': 'scores extraction', 'color': 'Type'},
-                       color=px.Constant("Document"),
-                       title="Scores d'extraction pour chaque mot de la phrase"
-                       )
 
-    fig.update_layout(barmode='group')
-    return fig
+def make_df(phrase_tk, tableau_doc, tableau_pages):
+    lines = []
+    for i in range(len(phrase_tk)):
+        lines.append([phrase_tk[i],tableau_doc[i], 'document'])
+        lines.append([phrase_tk[i],tableau_pages[i], 'pages'])
+
+    return pd.DataFrame(lines, columns = ['token','val', 'cat'])
+
+def hist(phrase_tk, tableau_doc, tableau_pages):
+  """
+    phrase_tk = tableau de longueur N de tous les tokens (coucou ça va ? -> ["coucou", "ça", "va"])
+    tableau_xxx = tableau de 32 flottants entre 0 et 1 (somme à 1) [0.1, 0.2, ....]
+  """
+  df = make_df(phrase_tk, tableau_doc, tableau_pages)
+
+  fig = px.histogram(df, x= df.token, y= df.val, 
+                     labels={'x':'phrase', 'y':'scores extraction', 'color' :'Type'}, 
+                     color='cat', 
+                     title = "Scores d'extraction pour chaque mot de la phrase"
+                    )
+  fig.update_layout(barmode='group')
+  return fig
 
 
 def click_submit(req, form, events, label_thresh, keras_md_thresh, keras_mp_thresh):
