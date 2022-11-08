@@ -231,7 +231,7 @@ def hist(phrase_tk, tableau_doc, tableau_pages):
 def click_submit(req, form, events, label_thresh, keras_md_thresh, keras_mp_thresh):
     # label = pred_binaire(req, label_thresh, model_label)
     # d'abbord parser la phrase puis traiter pour gagner en perf
-    ph_tk, pts, roles = parse_raw(req)
+    ph_tk, pts, roles = parse_raw(req.lower())
     label = label_mp_keras_pred(ph_tk, pts, roles, model_label_keras)
     if label > label_thresh:
         form.write('la requête est invalide, veuillez réessayer')
@@ -389,7 +389,7 @@ def main():
             request = st.text_input(
                 "Poser votre requête d'impression ici : ",
                 value="",
-                placeholder="ex: Bonjour, j'aimerai imprimer 12 copies du doc2"
+                placeholder="ex: Bonjour, j'aimerais imprimer 12 copies du doc2"
             )
             validation = st.form_submit_button("Envoyer la requête")
 
@@ -411,14 +411,14 @@ def main():
             placeholder="par defaut : 12:00"
         )
         aprem_debut = st.text_input(
-            "Heure de début d'après midi",
+            "Heure de début d'après-midi",
             placeholder="par defaut : 12:00"
         )
         aprem_fin = st.text_input(
             "Heure de fin",
             placeholder="par defaut : 23:00"
         )
-        st.write("Toutes modifications de la plage horraire entrainera la perte des evenement précedent")
+        st.write("Toutes modifications de la plage horaire entraineront la perte des évènements précedents")
         if st.button("Changer la plage horaire"):
             st.session_state.events = []
             if matin_debut != "":
