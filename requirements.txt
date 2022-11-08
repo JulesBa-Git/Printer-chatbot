@@ -7,6 +7,7 @@ calendar-view==2.1.0
 charset-normalizer==2.1.1
 flatbuffers==22.10.26
 fonttools==4.25.0
+fr_core_news_sm
 gast==0.4.0
 google-auth==2.14.0
 google-auth-oauthlib==0.4.6
