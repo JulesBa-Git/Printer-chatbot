@@ -58,7 +58,7 @@ if 'color' not in st.session_state:
                               EventStyles.BLUE]
 
 if 'hour_height' not in st.session_state:
-    st.session_state.hour_height = 100
+    st.session_state.hour_height = 50
 
 if 'fig' not in st.session_state:
     st.session_state.fig = 'none'
@@ -437,7 +437,7 @@ def main():
             create_red_events()
 
     st.header("Voici les horaires disponibles dans l'agenda de la photocopieuse")
-    st.session_state.hour_height = st.slider(label='distance entre 2 heures', min_value=50, max_value=200, value=100)
+    st.session_state.hour_height = st.slider(label='distance entre 2 heures', min_value=40, max_value=200, value=50)
     style.hour_height = st.session_state.hour_height
     calendar = Calendar.build(config)
     calendar.add_events(st.session_state.events)
