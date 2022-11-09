@@ -73,7 +73,9 @@ def spacy_load(model_name):
     return ret
 
 
-nlp = fr_core_news_sm.load(disable=["parser", "ner"])
+nlp = spacy_load('fr_core_news_sm')
+#nlp = fr_core_news_sm.load(disable=["parser", "ner"])
+
 stopwords = list(string.punctuation) + ['-', "'", " ", "  ", "   "] # + ntlk.corpus.stopwords.words('french')
 
 
